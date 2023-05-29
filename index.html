@@ -5,48 +5,203 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>語順練習</title>
 <style>
-*{padding:0;margin:0;box-sizing:border-box}html{width:100%;height:100%}body{width:100%;height:100%;background-image:url(bg.jpg);background-size:100% 100%;background-attachment:fixed;display:flex;flex-flow:column;align-items:center;justify-content:center}.glass{width:95%;margin:10px;padding:20px;background-color:#fff4;border:1px solid #fff8;border-right-color:#fff1;border-bottom-color:#fff1;border-radius:10px;backdrop-filter:blur(20px);box-shadow:0 5px 10px #4447;display:flex;flex-wrap:wrap;font-size:1.5rem}.incomplete_fld{border:1px solid #f993;background-color:#f993}.completed_fld{border:1px solid #9f9;background-color:#9f94}.misschr{color:red}@media screen and (max-width:800px){.glass{width:98%;font-size:1rem;padding:10px}}
-</style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
+  html {
+    width: 100%;
+    height: 100%;
+  }
+
+  body {
+    width: 100%;
+    height: 100%;
+    background-image: url("bg.jpg");
+    background-size: 100% 100%;
+    background-attachment: fixed;
+
+    font-family: sans-serif;
+  }
+
+  .workbook {
+    margin: 0 auto;
+    width: 100%;
+  
+    overflow-y: auto;
+  }
+  
+  .glass {
+    margin: 10px auto;
+    padding: 20px;
+    width: 95%;
+    
+    background-color: #fff4;
+    border: 1px solid #fff8;
+    border-right-color: #fff1;
+    border-bottom-color: #fff1;
+    border-radius: 10px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 5px 10px #4447;
+
+    font-size: 1.5rem;
+
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .incomplete_fld {
+    margin-top: 20px;
+    border: 1px solid #f993;
+    background-color: #f993;
+  }
+
+  .completed_fld {
+    margin-top: 20px;
+    border: 1px solid #9f9f;
+    background-color: #9f94;
+  }
+  
+  .keyboard {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    
+    background-color: #fff5;
+  }
+  
+  .kb_btn {
+    position: absolute;
+    box-shadow: inset -2px -2px 3px #8888;
+    border-radius: 7px;
+    background-color: #fffd;
+    
+    text-align: center;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  /*iphone 12 Pro MAX -> 428px*/
+  @media screen and (max-width: 500px) {
+    .glass {
+      margin: 7px auto;
+      width: 97%;
+      font-size: 1rem;
+      padding: 10px;
+    }
+    
+    .incomplete_fld {
+      margin-top: 15px;
+    }
+    
+    .completed_fld {
+      margin-top: 15px;
+    }
+  }
+</style>
 </head>
 
 <body>
-  <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
 </body>
 
+<script src="keyboard.js"></script>
+<script src="work_book.js"></script>
+
 <script>
-"use strict";const gWorkBook=new function(){function t(n){function f(n){for(let i=n+1;i<t.length;i++)if(r[i]==!1)return t[i];for(let i=0;i<n;i++)if(r[i]==!1)return t[i];return null}const t=[],r=[];for(let u=0;u<n.length;u++)t.push(new i(u,n[u],this)),r.push(!1);this.ReqFocus=n=>{u(n)};this.NtfyCompleted=n=>{r[n]=!0,u(f(n))};this.NtfyReset=n=>{r[n]=!1,u(t[n])};const u=(n=>{let t=n;return t.SetFocus(),document.onkeydown=t.OnKeyDown,n=>{n!=t&&(t!=null&&t.RemoveFocus(),t=n,t==null?document.onkeydown=null:(t.SetFocus(),document.onkeydown=t.OnKeyDown))}})(t[0])}function i(n,t,i){const o=t.split(" "),s=new r(o),f=new u(o,s,this),h=document.body.Add_Div();h.style.width="95%";const e=document.createElement("button");e.textContent="Reset";h.appendChild(e);this.OnKeyDown=n=>{f.OnKeyDown(n)};this.SetFocus=()=>{f.SetFocus()};this.RemoveFocus=()=>{f.RemoveFocus()};this.ReqFocus=()=>{i.ReqFocus(this)};this.NtfyCompleted=()=>{i.NtfyCompleted(n)};e.onclick=()=>{s.Reset(),f.Reset(),i.NtfyReset(n),e.blur()};this.DBG_GetIdx=()=>n}function r(t){const i=document.body.Add_Div();i.classList.add("glass");const r=[];for(let u=0;u<t.length;u++){const f=document.createElement("span");f.textContent=t[u]+" ";f.style.color=n.COLOR_Model_NoType;r.push(f);i.appendChild(f)}let u=0;this.AdvanceCurWord=()=>{r[u++].style.color=n.COLOR_Model_Typed};this.GetHeight=()=>i.clientHeight+2;this.Reset=()=>{for(let t=0;t<u;t++)r[t].style.color=n.COLOR_Model_NoType;u=0}}function u(t,i,r){const u=document.body.Add_Div();u.classList.add("glass");u.classList.add("incomplete_fld");u.style.height=i.GetHeight()+"px";this.Get_e_fld=()=>u;const h=[];for(let n=t.length;n>0;n--){const n=document.createElement("span");u.appendChild(n);h.push(n)}const o=new f(this);let e=0;const c=t.length-1;let s=!1;o.Set_NewWord(t[0]);this.AdvanceCurWord=()=>{if(i.AdvanceCurWord(),h[e].textContent=t[e]+" ",e++,e<=c){o.Set_NewWord(t[e]);return}s=!0;o.NtfyCompleted();u.classList.add("completed_fld");u.style.boxShadow="";r.NtfyCompleted()};this.OnKeyDown=n=>{o.OnKeyDown(n)};this.SetFocus=()=>{s||(u.style.boxShadow=n.Px_Border_Focused,u.focus())};this.RemoveFocus=()=>{s||(u.style.boxShadow="")};u.onclick=()=>{s||r.ReqFocus()};this.Reset=()=>{for(let n=0;n<e;n++)h[n].textContent="";e=0;s=!1;o.Reset();o.Set_NewWord(t[0]);u.classList.remove("completed_fld")}}function f(t){const u=document.createElement("span");t.Get_e_fld().appendChild(u);const f=new e(t);let o,r,i,s=!1;this.Set_NewWord=t=>{o="",u.textContent="",r=t.slice(0,n.PCS_Chr_to_Input),i=r.charCodeAt(0),i>96&&(i-=32)};this.NtfyCompleted=()=>{u.textContent="",s=!0};this.OnKeyDown=n=>{if(!s&&!(n.key.length>1)){let e=n.key.charCodeAt(0);if(!(e<=32)&&!(e>=127)){if(e>96&&(e-=32),e!=i){f.SetChr(n.key);return}if(f.ClearChr(),o+=n.key,u.textContent=o,r.length==1){t.AdvanceCurWord();return}r=r.slice(1);i=r.charCodeAt(0);i>96&&(i-=32)}}};this.Reset=()=>{s=!1,f.ClearChr()}}function e(t){const r=t.Get_e_fld().Add_Div();r.classList.add("misschr");let i=-1;this.SetChr=t=>{i>0&&clearTimeout(i),r.textContent=t,i=setTimeout(()=>{r.textContent="",i=-1},n.MSec_Clear_Miss_Chr)};this.ClearChr=()=>{i>0&&(clearTimeout(i),i=-1),r.textContent.length>0&&(r.textContent="")}}this.SetTxts=n=>{new t(n)};const n={COLOR_Model_NoType:"#888",COLOR_Model_Typed:"#000",PCS_Chr_to_Input:1,MSec_Clear_Miss_Chr:1e3,Px_Border_Focused:"0 0 0 3px #f008"};Element.prototype.Add_Div=function(){const n=document.createElement("div");return this.appendChild(n),n}}
-</script>
-<script src="n0001.js"></script>
+
+const main = new function() {
+  const g = {
+    Px_Keyboard_Height: 200,
+    Px_Thld_Width_ShowKeyboard: 850,  // iPad がおおよそ 834px
+  }
+
+  let _b_showKeyboard = 
+    document.body.clientWidth <= g.Px_Thld_Width_ShowKeyboard ? true : false;
+    
+  function Get_div_workBook_StrHeight() {
+    const body_height = document.body.clientHeight;
+    return (_b_showKeyboard ? body_height - g.Px_Keyboard_Height : body_height) + "px";
+  }
+
+  const _e_div_workBook = document.body.Add_Div();
+  _e_div_workBook.classList.add('workbook');
+  _e_div_workBook.style.height = Get_div_workBook_StrHeight();
+
+  {
+    const e_div_btn_show_kb = _e_div_workBook.Add_Div();
+    e_div_btn_show_kb.style.width = "95%";
+    const e_btn_show_kb = document.createElement('button');
+    e_btn_show_kb.textContent = "Show Keyboard";
+    e_div_btn_show_kb.appendChild(e_btn_show_kb);
+    
+    e_btn_show_kb.onclick = () => {
+      if (_b_showKeyboard) { return; }
+      
+      _b_showKeyboard = true;
+      gKeyBoard.NtfyResize();
+      _e_div_KeyBoard.style.display = 'block';
+      
+      _e_div_workBook.style.height = Get_div_workBook_StrHeight();
+    }
+  }
+
+  // -----------------------------------------------
+  const txts = [
+    "I rarely eat snacks and saw this at my local store.",
+    "I love spicy snacks but didn't really care for Cheetos but I wanted to try it out to see how hot it is.",
+    "This is by far the hottest snacks from a normal food I've ever had.",
+    "As a spice head It's alright, but if you're someone who's not used to eating spicy foods, you're going to burn your mouth.",
+    "It's pretty damn hot.",
+  ];
+
+  const gWorkBook = new WorkBook(txts, _e_div_workBook);
+
+  // -----------------------------------------------
+  const _e_div_KeyBoard = document.body.Add_Div();
+  _e_div_KeyBoard.classList.add('keyboard');
+  _e_div_KeyBoard.style.height = g.Px_Keyboard_Height + "px";
+
+  const receiver_keyboard = new function() {
+    this.NtfyCharCode = (char_code) => {
+      if (document.onkeydown) {
+        document.onkeydown({key: String.fromCharCode(char_code)});
+      }
+    }
+    
+    this.NtfyHideKeyboard = () => {
+      _e_div_KeyBoard.style.display = 'none';
+      _b_showKeyboard = false;
+      
+      _e_div_workBook.style.height = document.body.clientHeight + "px";
+    }
+  }
   
+  if (_b_showKeyboard == false) {
+    _e_div_KeyBoard.style.display = 'none';
+  }
+  
+  const gKeyBoard = new KeyBoard(_e_div_KeyBoard, receiver_keyboard);
+
+  // -----------------------------------------------
+  window.onresize = (() => {
+    let _id_timer = -1;
+    return () => {
+      if (_id_timer > 0) { return; }
+      
+      _id_timer = setTimeout(() => {
+        gWorkBook.NtfyResize();
+        if (_b_showKeyboard) { gKeyBoard.NtfyResize(); }
+        _id_timer = -1;
+      }, 500);
+    }
+  })();
+}
+</script>
+
 <script>
-console.log("ver 22");
-
-const e_keyboard = document.createElement('div');
-e_keyboard.classList.add("simple-keyboard");
-document.body.appendChild(e_keyboard);
-
-e_keyboard.style.display = "block";
-
-const gKeyboard = window.SimpleKeyboard.default;
-
-const myKeyboard = new gKeyboard({
-  onChange: input => onChange(input),
-  onKeyPress: button => onKeyPress(button)
-});
-
-/*
-function onChange(input) {
-//  document.querySelector(".input").value = input;
-  console.log("Input changed", input);
-}
-
-function onKeyPress(button) {
-  console.log("Button pressed", button);
-}
-*/
-
+console.log("ver dev2 - 40");
 </script>
-  
+
 </html>
