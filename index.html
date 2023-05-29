@@ -179,6 +179,7 @@ function Main() {
   const receiver_keyboard = new function() {
     this.NtfyCharCode = (char_code) => {
       if (document.onkeydown) {
+        if (char_code < 97) { char_code += 32; }
         document.onkeydown({key: String.fromCharCode(char_code)});
       }
     }
@@ -216,7 +217,7 @@ function Main() {
 </script>
 
 <script>
-console.log("ver dev2 - 60");
+console.log("ver dev2 - 65");
 </script>
 
 </html>
