@@ -121,8 +121,18 @@
 <script src="work_book.js"></script>
 
 <script>
+{
+  const params = (new URL(window.location.href)).searchParams;
 
-const main = new function() {
+  const e_script = document.createElement('script');
+  e_script.src = `n${params.get('txt')}.js`;
+  e_script.onload = () => {
+    new Main();
+  }
+  document.body.appendChild(e_script);
+}
+
+function Main() {
   const g = {
     Px_Keyboard_Height: 200,
     Px_Thld_Width_ShowKeyboard: 850,  // iPad がおおよそ 834px
@@ -159,14 +169,6 @@ const main = new function() {
   }
 
   // -----------------------------------------------
-  const txts = [
-    "I rarely eat snacks and saw this at my local store.",
-    "I love spicy snacks but didn't really care for Cheetos but I wanted to try it out to see how hot it is.",
-    "This is by far the hottest snacks from a normal food I've ever had.",
-    "As a spice head It's alright, but if you're someone who's not used to eating spicy foods, you're going to burn your mouth.",
-    "It's pretty damn hot.",
-  ];
-
   const gWorkBook = new WorkBook(txts, _e_div_workBook);
 
   // -----------------------------------------------
@@ -189,12 +191,11 @@ const main = new function() {
     }
   }
   
+  const gKeyBoard = new KeyBoard(_e_div_KeyBoard, receiver_keyboard);
   if (_b_showKeyboard == false) {
     _e_div_KeyBoard.style.display = 'none';
   }
   
-  const gKeyBoard = new KeyBoard(_e_div_KeyBoard, receiver_keyboard);
-
   // -----------------------------------------------
   window.onresize = (() => {
     let _id_timer = -1;
@@ -209,6 +210,7 @@ const main = new function() {
     }
   })();
 }
+
 </script>
 
 <script>
