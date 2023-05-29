@@ -11,8 +11,8 @@ function KeyBoard(e_div_kb, parent_Ntfyd) {
   let _kb_Wd_cur = e_div_kb.clientWidth;
   const kb_Ht = e_div_kb.clientHeight;
   
-  let _kb_top_downward = document.body.clientHeight - kb_Ht;
-  e_div_kb.style.top = _kb_top_downward + "px";
+  let _kb_top = document.body.clientHeight - kb_Ht;
+  e_div_kb.style.top = _kb_top + "px";
   
   const btn_frm_Wd = (_kb_Wd_cur - g.Px_Mgn) / 10;
   const btn_frm_Ht = (kb_Ht + g.Px_Shrink_NumKey - g.Px_Mgn) / 4;
@@ -76,6 +76,12 @@ function KeyBoard(e_div_kb, parent_Ntfyd) {
   }
   
   this.NtfyResize = () => {
+    const kb_Ht_prov = document.body.clientHeight - kb_Ht;
+    if (kb_Ht_prov != _kb_top) {
+      _kb_top = kb_Ht_prov;
+      e_div_kb.style.top = _kb_top + "px";
+    }
+    
     const Wd = document.body.clientWidth;
     if (Math.abs(Wd - _kb_Wd_cur) <= 10) { return; }
     
