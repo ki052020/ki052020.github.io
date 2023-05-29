@@ -87,7 +87,7 @@ function WorkBook(ary_txt, e_div_workBook) {
     const _inputFld = new InputFld(ary_words, _modelFld, this);
     
     const e_div_clear = e_div_workBook.Add_Div();
-    e_div_clear.style.width = "95%";
+    e_div_clear.classList.add('div_for_btn');
     const e_btn_clear = document.createElement('button');
     e_btn_clear.textContent = "Reset";
     e_div_clear.appendChild(e_btn_clear);
