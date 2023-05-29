@@ -203,6 +203,8 @@ function Main() {
       if (_id_timer > 0) { return; }
       
       _id_timer = setTimeout(() => {
+        _e_div_workBook.style.height = Get_div_workBook_StrHeight();
+        
         gWorkBook.NtfyResize();
         if (_b_showKeyboard) { gKeyBoard.NtfyResize(); }
         _id_timer = -1;
@@ -214,7 +216,7 @@ function Main() {
 </script>
 
 <script>
-console.log("ver dev2 - 50");
+console.log("ver dev2 - 60");
 </script>
 
 </html>
