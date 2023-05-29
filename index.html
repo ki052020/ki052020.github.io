@@ -69,20 +69,27 @@
     left: 0;
     width: 100%;
     
-    background-color: #fff5;
+    background-color: #eee8;
   }
   
   .kb_btn {
     position: absolute;
-    box-shadow: inset -2px -2px 3px #8888;
-    border-radius: 7px;
+    border-radius: 5px;
     background-color: #fffd;
+    
+    border-bottom: 1px solid #bbb;
+    box-shadow: 0 0 5px -2px #0008;
     
     text-align: center;
     font-weight: bold;
     color: #555;
   }
   
+  .div_for_btn {
+    margin: 0 auto;
+    width: 95%
+  }
+
   /*iphone 12 Pro MAX -> 428px*/
   @media screen and (max-width: 500px) {
     .glass {
@@ -98,6 +105,10 @@
     
     .completed_fld {
       margin-top: 15px;
+    }
+    
+    .div_for_btn {
+      width: 97%
     }
   }
 </style>
@@ -131,7 +142,7 @@ const main = new function() {
 
   {
     const e_div_btn_show_kb = _e_div_workBook.Add_Div();
-    e_div_btn_show_kb.style.width = "95%";
+    e_div_btn_show_kb.classList.add('div_for_btn');
     const e_btn_show_kb = document.createElement('button');
     e_btn_show_kb.textContent = "Show Keyboard";
     e_div_btn_show_kb.appendChild(e_btn_show_kb);
@@ -201,7 +212,7 @@ const main = new function() {
 </script>
 
 <script>
-console.log("ver dev2 - 40");
+console.log("ver dev2 - 50");
 </script>
 
 </html>
