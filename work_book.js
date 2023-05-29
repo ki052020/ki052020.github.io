@@ -10,7 +10,7 @@ Element.prototype.Add_Div = function() {
 function WorkBook(ary_txt, e_div_workBook) {
 
   const g = {
-    COLOR_Model_NoType: "#888",
+    COLOR_Model_NoType: "#aa8",
     COLOR_Model_Typed: "#000",
     
     PCS_Chr_to_Input: 1,  // デフォルト値は１
